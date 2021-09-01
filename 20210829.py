@@ -1,12 +1,12 @@
 Python 3.8.5 (default, Sep  3 2020, 21:29:08) [MSC v.1916 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license()" for more information.
 >>> import numpy as np
->>> 
 >>> from sklearn.datasets import load_iris
-
 >>> from sklearn.model_selection import train_test_split
 >>> import pandas as pd
 >>> from sklearn.metrics import accuracy_score
+
+
 >>> emp=pd.read_csv("D:\pandas_jny\data\employee_data.csv")
 >>> emp.head()
    avg_monthly_hrs   department  ...    status  tenure
@@ -37,32 +37,6 @@ dtypes: float64(5), int64(2), object(3)
 memory usage: 1.1+ MB
 >>> em=emp.drop(columns=['department'])
 >>> em=em.replace({'Left':0, 'Employed':1})
->>> em.head()
-   avg_monthly_hrs  filed_complaint  ...  status  tenure
-0              221              NaN  ...       0     5.0
-1              232              NaN  ...       1     2.0
-2              184              NaN  ...       1     3.0
-3              206              NaN  ...       1     2.0
-4              249              NaN  ...       1     3.0
-
-[5 rows x 9 columns]
->>> em.info()
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 14249 entries, 0 to 14248
-Data columns (total 9 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   avg_monthly_hrs    14249 non-null  int64  
- 1   filed_complaint    2058 non-null   float64
- 2   last_evaluation    12717 non-null  float64
- 3   n_projects         14249 non-null  int64  
- 4   recently_promoted  300 non-null    float64
- 5   salary             14249 non-null  object 
- 6   satisfaction       14068 non-null  float64
- 7   status             14249 non-null  int64  
- 8   tenure             14068 non-null  float64
-dtypes: float64(5), int64(3), object(1)
-memory usage: 1002.0+ KB
 >>> em=em.replace({'low':1, 'medium':2,'high':3})
 >>> em=em.replace({'filed_complaint': np.nan}, {'filed_complaint': 0})
 >>> em=em.replace({'recently_promoted': np.nan}, {'recently_promoted': 0})
@@ -84,21 +58,26 @@ Data columns (total 9 columns):
  8   tenure             12717 non-null  float64
 dtypes: float64(5), int64(4)
 memory usage: 993.5 KB
+	
+	
+	
 >>> X, Y = load_iris(return_X_y = True)
->>> X = emp2.drop(columns= ['status'])
-Traceback (most recent call last):
-  File "<pyshell#19>", line 1, in <module>
-    X = emp2.drop(columns= ['status'])
-NameError: name 'emp2' is not defined
+
 >>> X = em.drop(columns= ['status'])
 >>> Y = em['status']
 >>> train_X, test_X, train_Y, test_Y = train_test_split(X, Y, test_size=0.2, random_state = 42)
+
+
+
 >>> from sklearn.preprocessing import StandardScaler
 >>> sc = StandardScaler()
 >>> sc.fit(train_X)
 StandardScaler()
 >>> X_train_std = sc.transform(train_X)
 >>> X_test_std = sc.transform(test_X)
+
+
+
 >>> from sklearn.svm import SVC
 >>> svm_model = SVC(kernel='rbf', C=8, gamma=0.1)
 >>> svm_model.fit(X_train_std, train_Y)
@@ -106,11 +85,7 @@ SVC(C=8, gamma=0.1)
 >>> y_pred = svm_model.predict(X_test_std)
 >>> print("예측된 라벨:", y_pred)
 예측된 라벨: [1 0 1 ... 1 1 1]
->>> print("ground-truth 라벨:", y_test)
-Traceback (most recent call last):
-  File "<pyshell#33>", line 1, in <module>
-    print("ground-truth 라벨:", y_test)
-NameError: name 'y_test' is not defined
+
 >>> print("ground-truth 라벨:", test_Y)
 ground-truth 라벨: 7026     1
 2050     0
@@ -126,6 +101,12 @@ ground-truth 라벨: 7026     1
 Name: status, Length: 2544, dtype: int64
 >>> print("prediction accuracy: {:.2f}".format(np.mean(y_pred == test_Y)))
 prediction accuracy: 0.97
+	
+	
+	
+	
+	
+	
 >>> from sklearn.metrics import accuracy_score,recall_score, f1_score
 >>> score = pd.DataFrame({"Model":['SVMmodel'],
                     "Accuracy Score": [accuracy_score(test_Y, y_pred)],
@@ -134,17 +115,12 @@ prediction accuracy: 0.97
 >>> score
       Model  Accuracy Score    Recall   F1score
 0  SVMmodel         0.96934  0.985455  0.979855
+
+
+
+
 >>> from sklearn.linear_model import LogisticRegression
->>> y_pred=results.predict(test_X)
-Traceback (most recent call last):
-  File "<pyshell#40>", line 1, in <module>
-    y_pred=results.predict(test_X)
-NameError: name 'results' is not defined
->>> model=sm.Logit(train_Y,train_X)
-Traceback (most recent call last):
-  File "<pyshell#41>", line 1, in <module>
-    model=sm.Logit(train_Y,train_X)
-NameError: name 'sm' is not defined
+
 >>> import statsmodels.api as sm
 >>> model=sm.Logit(train_Y,train_X)
 >>> results=model.fit(method="newton")
@@ -230,11 +206,10 @@ Length: 2544, dtype: float64
 6061     1
 2933     1
 Length: 2544, dtype: int32
->>> cfmat=confusion_matrix(test_Y,pred_Y)
-Traceback (most recent call last):
-  File "<pyshell#58>", line 1, in <module>
-    cfmat=confusion_matrix(test_Y,pred_Y)
-NameError: name 'confusion_matrix' is not defined
+
+		
+		
+		
 >>> from sklearn.metrics import confusion_matrix
 >>> cfmat=confusion_matrix(test_Y,pred_Y)
 >>> print(cfmat)
@@ -243,22 +218,11 @@ NameError: name 'confusion_matrix' is not defined
 >>> (cfmat[0,0]+cfmat[1,1])/len(pred_Y)
 0.7653301886792453
 >>> confusion_matrix의 정확도 계산 결과
-SyntaxError: invalid syntax
->>> 
->>> score = pd.DataFrame({"Model":['model'],
-                    "Accuracy Score": [accuracy_score(test_Y, y_pred)],
-                   "Recall": [recall_score(test_Y, y_pred)],
-                   "F1score": [f1_score(test_Y, y_pred)]})
-Traceback (most recent call last):
-  File "<pyshell#65>", line 2, in <module>
-    "Accuracy Score": [accuracy_score(test_Y, y_pred)],
-  File "D:\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 72, in inner_f
-    return f(**kwargs)
-  File "D:\anaconda3\lib\site-packages\sklearn\metrics\_classification.py", line 187, in accuracy_score
-    y_type, y_true, y_pred = _check_targets(y_true, y_pred)
-  File "D:\anaconda3\lib\site-packages\sklearn\metrics\_classification.py", line 90, in _check_targets
-    raise ValueError("Classification metrics can't handle a mix of {0} "
-ValueError: Classification metrics can't handle a mix of binary and continuous targets
+
+
+
+
+
 >>> score = pd.DataFrame({"Model":['DTmodel'],
                     "Accuracy Score": [accuracy_score(test_Y, pred_Y)],
                    "Recall": [recall_score(test_Y, pred_Y)],
@@ -266,18 +230,11 @@ ValueError: Classification metrics can't handle a mix of binary and continuous t
 >>> score
      Model  Accuracy Score    Recall   F1score
 0  DTmodel         0.76533  0.925195  0.856456
->>> lr
-Traceback (most recent call last):
-  File "<pyshell#68>", line 1, in <module>
-    lr
-NameError: name 'lr' is not defined
->>> lr = LogisticRegression()
 
->>> lr.fit(X_train, y_train)
-Traceback (most recent call last):
-  File "<pyshell#70>", line 1, in <module>
-    lr.fit(X_train, y_train)
-NameError: name 'X_train' is not defined
+
+
+
+>>> lr = LogisticRegression()
 >>> lr.fit(train_X, train_Y)
 
 Warning (from warnings module):
@@ -293,6 +250,10 @@ Please also refer to the documentation for alternative solver options:
 LogisticRegression()
 >>> lr.score(train_X, train_Y)
 0.7735181362429961
+	    
+	    
+	    
+	    
 >>> em.info()
 <class 'pandas.core.frame.DataFrame'>
 Int64Index: 12717 entries, 0 to 14248
@@ -310,14 +271,15 @@ Data columns (total 9 columns):
  8   tenure             12717 non-null  float64
 dtypes: float64(5), int64(4)
 memory usage: 993.5 KB
+	    
+	    
+	    
 >>> from sklearn.linear_model import LogisticRegression
 >>> from sklearn import metrics
 >>> import statsmodels.api as sm
->>> log_reg
-Traceback (most recent call last):
-  File "<pyshell#77>", line 1, in <module>
-    log_reg
-NameError: name 'log_reg' is not defined
+	    
+	    
+
 >>> log_reg = LogisticRegression()
 >>> log_reg.fit(train_X, train_Y)
 
@@ -332,17 +294,10 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
 Please also refer to the documentation for alternative solver options:
     https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
 LogisticRegression()
->>> x2 = sm.add_constant(x)
-Traceback (most recent call last):
-  File "<pyshell#80>", line 1, in <module>
-    x2 = sm.add_constant(x)
-NameError: name 'x' is not defined
+	    
+
 >>> x2 = sm.add_constant(X)
->>> model = sm.OLS(y, x2)
-Traceback (most recent call last):
-  File "<pyshell#82>", line 1, in <module>
-    model = sm.OLS(y, x2)
-NameError: name 'y' is not defined
+
 >>> model = sm.OLS(Y, x2)
 >>> result = model.fit()
 >>> print(result.summary())
@@ -393,11 +348,8 @@ strong multicollinearity or other numerical problems.
 6061     0.596886
 2933     0.573521
 Length: 2544, dtype: float64
->>> pr
-Traceback (most recent call last):
-  File "<pyshell#87>", line 1, in <module>
-    pr
-NameError: name 'pr' is not defined
+
+	    
 >>> pr=log_reg.predict(test_X)
 >>> print(pr)
 [1 0 1 ... 1 1 1]
