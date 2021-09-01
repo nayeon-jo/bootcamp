@@ -2,11 +2,6 @@ Python 3.8.5 (default, Sep  3 2020, 21:29:08) [MSC v.1916 64 bit (AMD64)] on win
 Type "help", "copyright", "credits" or "license()" for more information.
 >>> import pandas as pd
 >>> emp=pd.read_csv("D:\pandas_jny\data\employee_data.csv")
->>> df.head()
-Traceback (most recent call last):
-  File "<pyshell#2>", line 1, in <module>
-    df.head()
-NameError: name 'df' is not defined
 >>> emp.head()
    avg_monthly_hrs   department  ...    status  tenure
 0              221  engineering  ...      Left     5.0
@@ -16,52 +11,16 @@ NameError: name 'df' is not defined
 4              249        sales  ...  Employed     3.0
 
 [5 rows x 10 columns]
+
+
+
 >>> import numpy as np
 >>> from sklearn.datasets import load_iris
 >>> from sklearn.tree import DecisionTreeClassifier
 >>> from sklearn.model_selection import train_test_split
 >>> from sklearn.metrics import accuracy_score
 >>> X, Y = load_iris(return_X_y = True)
->>> X['status']=Y
-Traceback (most recent call last):
-  File "<pyshell#10>", line 1, in <module>
-    X['status']=Y
-IndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices
->>> df = pd.DataFrame(X, columns=['salary','tenure','n_projects','avg_monthly_hrs','satisfaction','last_evaluation','filed_complaint','recently_promoted'])
-Traceback (most recent call last):
-  File "D:\anaconda3\lib\site-packages\pandas\core\internals\managers.py", line 1662, in create_block_manager_from_blocks
-    make_block(values=blocks[0], placement=slice(0, len(axes[0])))
-  File "D:\anaconda3\lib\site-packages\pandas\core\internals\blocks.py", line 2722, in make_block
-    return klass(values, ndim=ndim, placement=placement)
-  File "D:\anaconda3\lib\site-packages\pandas\core\internals\blocks.py", line 130, in __init__
-    raise ValueError(
-ValueError: Wrong number of items passed 4, placement implies 8
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "<pyshell#11>", line 1, in <module>
-    df = pd.DataFrame(X, columns=['salary','tenure','n_projects','avg_monthly_hrs','satisfaction','last_evaluation','filed_complaint','recently_promoted'])
-  File "D:\anaconda3\lib\site-packages\pandas\core\frame.py", line 497, in __init__
-    mgr = init_ndarray(data, index, columns, dtype=dtype, copy=copy)
-  File "D:\anaconda3\lib\site-packages\pandas\core\internals\construction.py", line 234, in init_ndarray
-    return create_block_manager_from_blocks(block_values, [columns, index])
-  File "D:\anaconda3\lib\site-packages\pandas\core\internals\managers.py", line 1672, in create_block_manager_from_blocks
-    raise construction_error(tot_items, blocks[0].shape[1:], axes, e)
-ValueError: Shape of passed values is (150, 4), indices imply (150, 8)
->>> X = emp.drop(labels= ['ststus'], axis = 1)
-Traceback (most recent call last):
-  File "<pyshell#12>", line 1, in <module>
-    X = emp.drop(labels= ['ststus'], axis = 1)
-  File "D:\anaconda3\lib\site-packages\pandas\core\frame.py", line 4163, in drop
-    return super().drop(
-  File "D:\anaconda3\lib\site-packages\pandas\core\generic.py", line 3887, in drop
-    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
-  File "D:\anaconda3\lib\site-packages\pandas\core\generic.py", line 3921, in _drop_axis
-    new_axis = axis.drop(labels, errors=errors)
-  File "D:\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 5282, in drop
-    raise KeyError(f"{labels[mask]} not found in axis")
-KeyError: "['ststus'] not found in axis"
 >>> emp.head()
    avg_monthly_hrs   department  ...    status  tenure
 0              221  engineering  ...      Left     5.0
@@ -75,21 +34,7 @@ KeyError: "['ststus'] not found in axis"
 >>> y = emp.status
 >>> X_train, X_test, y_train, y_test = train_test_split(
     X, y, stratify=y, random_state=87, test_size=0.2)
->>> train_rate = round(y_train.sum() / len(y_train),2)
-test_rate = round(y_test.sum() / len(y_test),2)
-print(f'학습 데이터에서의 Target 비율 : {train_rate}')
-print(f'테스트 데이터에서의 Target 비율 : {test_rate}')
-SyntaxError: multiple statements found while compiling a single statement
->>> train_rate = round(y_train.sum() / len(y_train),2)
-Traceback (most recent call last):
-  File "<pyshell#18>", line 1, in <module>
-    train_rate = round(y_train.sum() / len(y_train),2)
-TypeError: unsupported operand type(s) for /: 'str' and 'int'
->>> print(train_X[:5],'\n')
-Traceback (most recent call last):
-  File "<pyshell#19>", line 1, in <module>
-    print(train_X[:5],'\n')
-NameError: name 'train_X' is not defined
+
 >>> print(X_train[:5],'\n')
       avg_monthly_hrs  department  ...  satisfaction  tenure
 6236              255   marketing  ...      0.108469     4.0
@@ -129,11 +74,7 @@ Name: status, dtype: object
 >>> from sklearn import tree
 >>> from matplotlib import pyplot as plt
 >>> DTmodel = DecisionTreeClassifier()
->>> DTmodel.fit(train_X, train_Y)
-Traceback (most recent call last):
-  File "<pyshell#27>", line 1, in <module>
-    DTmodel.fit(train_X, train_Y)
-NameError: name 'train_X' is not defined
+
 >>> DTmodel.fit(X_train, y_train)
 Traceback (most recent call last):
   File "<pyshell#28>", line 1, in <module>
@@ -155,38 +96,9 @@ Traceback (most recent call last):
   File "D:\anaconda3\lib\site-packages\numpy\core\_asarray.py", line 83, in asarray
     return array(a, dtype, copy=False, order=order)
 ValueError: could not convert string to float: 'marketing'
->>> pip install scikit-learn
-SyntaxError: invalid syntax
->>> DTmodel = DecisionTreeClassifier()
->>> DTmodel.fit(X_train, y_train)
-Traceback (most recent call last):
-  File "<pyshell#31>", line 1, in <module>
-    DTmodel.fit(X_train, y_train)
-  File "D:\anaconda3\lib\site-packages\sklearn\tree\_classes.py", line 890, in fit
-    super().fit(
-  File "D:\anaconda3\lib\site-packages\sklearn\tree\_classes.py", line 156, in fit
-    X, y = self._validate_data(X, y,
-  File "D:\anaconda3\lib\site-packages\sklearn\base.py", line 429, in _validate_data
-    X = check_array(X, **check_X_params)
-  File "D:\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 72, in inner_f
-    return f(**kwargs)
-  File "D:\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 598, in check_array
-    array = np.asarray(array, order=order, dtype=dtype)
-  File "D:\anaconda3\lib\site-packages\numpy\core\_asarray.py", line 83, in asarray
-    return array(a, dtype, copy=False, order=order)
-  File "D:\anaconda3\lib\site-packages\pandas\core\generic.py", line 1781, in __array__
-    return np.asarray(self._values, dtype=dtype)
-  File "D:\anaconda3\lib\site-packages\numpy\core\_asarray.py", line 83, in asarray
-    return array(a, dtype, copy=False, order=order)
-ValueError: could not convert string to float: 'marketing'
+
 >>> 
 ================================== RESTART: D:/anaconda3/Scripts/20210828.py ==================================
->>> from sklearn import tree
-X = [[0, 0], [1, 1]]
-Y = [0, 1]
-clf = tree.DecisionTreeClassifier()
-clf = clf.fit(X, Y)
-SyntaxError: multiple statements found while compiling a single statement
 >>> from sklearn import tree
 >>> X = [[0, 0], [1, 1]]
 >>> Y = [0, 1]
@@ -194,6 +106,9 @@ SyntaxError: multiple statements found while compiling a single statement
 >>> clf = clf.fit(X, Y)
 >>> clf.predict([[2., 2.]])
 array([1])
+			       
+			       
+			       
 >>> import numpy as np
 >>> import pandas as pd
 >>> from sklearn.datasets import load_iris
@@ -210,36 +125,10 @@ array([1])
 4              249        sales  ...  Employed     3.0
 
 [5 rows x 10 columns]
->>> emp['status']=Y
-Traceback (most recent call last):
-  File "<pyshell#47>", line 1, in <module>
-    emp['status']=Y
-  File "D:\anaconda3\lib\site-packages\pandas\core\frame.py", line 3040, in __setitem__
-    self._set_item(key, value)
-  File "D:\anaconda3\lib\site-packages\pandas\core\frame.py", line 3116, in _set_item
-    value = self._sanitize_column(key, value)
-  File "D:\anaconda3\lib\site-packages\pandas\core\frame.py", line 3764, in _sanitize_column
-    value = sanitize_index(value, self.index)
-  File "D:\anaconda3\lib\site-packages\pandas\core\internals\construction.py", line 747, in sanitize_index
-    raise ValueError(
-ValueError: Length of values (2) does not match length of index (14249)
+			       
 >>> X, Y = load_iris(return_X_y = True)
->>> emp['status']=Y
-Traceback (most recent call last):
-  File "<pyshell#49>", line 1, in <module>
-    emp['status']=Y
-  File "D:\anaconda3\lib\site-packages\pandas\core\frame.py", line 3040, in __setitem__
-    self._set_item(key, value)
-  File "D:\anaconda3\lib\site-packages\pandas\core\frame.py", line 3116, in _set_item
-    value = self._sanitize_column(key, value)
-  File "D:\anaconda3\lib\site-packages\pandas\core\frame.py", line 3764, in _sanitize_column
-    value = sanitize_index(value, self.index)
-  File "D:\anaconda3\lib\site-packages\pandas\core\internals\construction.py", line 747, in sanitize_index
-    raise ValueError(
-ValueError: Length of values (150) does not match length of index (14249)
->>>  X = emp.drop(columns= ['status'])
- 
-SyntaxError: unexpected indent
+
+
 >>> X = emp.drop(columns= ['status'])
 >>> Y = emp['status']
 >>> train_X, test_X, train_Y, test_Y = train_test_split(X, Y, test_size=0.2, random_state = 42)
@@ -252,6 +141,8 @@ SyntaxError: unexpected indent
 4              249        sales  ...  Employed     3.0
 
 [5 rows x 10 columns]
+			       
+			       
 >>> train_X[:5]
        avg_monthly_hrs department  ...  satisfaction  tenure
 409                139    support  ...      0.198545     4.0
@@ -296,6 +187,10 @@ Name: status, dtype: object
 9606     Employed
 7995     Employed
 Name: status, Length: 2850, dtype: object
+			       
+			       
+			       
+			       
 >>> from matplotlib import pyplot as plt
 >>> from sklearn import tree
 >>> DTmodel = DecisionTreeClassifier()
@@ -320,12 +215,7 @@ Traceback (most recent call last):
   File "D:\anaconda3\lib\site-packages\numpy\core\_asarray.py", line 83, in asarray
     return array(a, dtype, copy=False, order=order)
 ValueError: could not convert string to float: 'support'
->>> fig = plt.figure(figsize=(25,20))
-_ = tree.plot_tree(DTmodel, 
-                   feature_names=['salary','tenure','n_projects','avg_monthly_hrs','satisfaction','last_evaluation','filed_complaint','recently_promoted'],  
-                   class_names=['setosa', 'versicolor', 'virginica'],
-                   filled=True)
-SyntaxError: multiple statements found while compiling a single statement
+
 >>> fig = plt.figure(figsize=(25,20))
 >>> _ = tree.plot_tree(DTmodel, 
                    feature_names=['salary','tenure','n_projects','avg_monthly_hrs','satisfaction','last_evaluation','filed_complaint','recently_promoted'],  
@@ -343,6 +233,10 @@ Traceback (most recent call last):
   File "D:\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 1019, in check_is_fitted
     raise NotFittedError(msg % {'name': type(estimator).__name__})
 sklearn.exceptions.NotFittedError: This DecisionTreeClassifier instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
+		       
+		       
+		       
+		       
 >>> from sklearn.linear_model import LinearRegression
 >>> lrmodel=LinearRegression()
 >>> lrmodel.fit(train_X, train_Y)
@@ -381,24 +275,13 @@ Traceback (most recent call last):
   File "D:\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 1019, in check_is_fitted
     raise NotFittedError(msg % {'name': type(estimator).__name__})
 sklearn.exceptions.NotFittedError: This LinearRegression instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
->>> B0=lrmodel.intercept_
-Traceback (most recent call last):
-  File "<pyshell#70>", line 1, in <module>
-    B0=lrmodel.intercept_
-AttributeError: 'LinearRegression' object has no attribute 'intercept_'
->>> Bi=lrmodel.coef_[i-1]
-Traceback (most recent call last):
-  File "<pyshell#71>", line 1, in <module>
-    Bi=lrmodel.coef_[i-1]
-AttributeError: 'LinearRegression' object has no attribute 'coef_'
+
+		    
+
+		    
 >>> from sklearn.preprocessing import StandardScaler
 >>> from sklearn import datasets
 >>> sc = StandardScaler()
->>> sc.fit(X_train)
-Traceback (most recent call last):
-  File "<pyshell#75>", line 1, in <module>
-    sc.fit(X_train)
-NameError: name 'X_train' is not defined
 >>> sc.fit(train_X)
 Traceback (most recent call last):
   File "<pyshell#76>", line 1, in <module>
@@ -439,53 +322,11 @@ Data columns (total 10 columns):
 dtypes: float64(5), int64(2), object(3)
 memory usage: 1.1+ MB
 >>> em=emp.replace({'Left':0, 'Employed':1})
->>> em.head()
-   avg_monthly_hrs   department  filed_complaint  ...  satisfaction  status  tenure
-0              221  engineering              NaN  ...      0.829896       0     5.0
-1              232      support              NaN  ...      0.834544       1     2.0
-2              184        sales              NaN  ...      0.834988       1     3.0
-3              206        sales              NaN  ...      0.424764       1     2.0
-4              249        sales              NaN  ...      0.779043       1     3.0
-
-[5 rows x 10 columns]
->>> X, Y = load_iris(return_X_y = True)
 >>> em=em.drop(columns=['department'])
->>> em.head()
-   avg_monthly_hrs  filed_complaint  ...  status  tenure
-0              221              NaN  ...       0     5.0
-1              232              NaN  ...       1     2.0
-2              184              NaN  ...       1     3.0
-3              206              NaN  ...       1     2.0
-4              249              NaN  ...       1     3.0
 
-[5 rows x 9 columns]
->>> em.info()
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 14249 entries, 0 to 14248
-Data columns (total 9 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   avg_monthly_hrs    14249 non-null  int64  
- 1   filed_complaint    2058 non-null   float64
- 2   last_evaluation    12717 non-null  float64
- 3   n_projects         14249 non-null  int64  
- 4   recently_promoted  300 non-null    float64
- 5   salary             14249 non-null  object 
- 6   satisfaction       14068 non-null  float64
- 7   status             14249 non-null  int64  
- 8   tenure             14068 non-null  float64
-dtypes: float64(5), int64(3), object(1)
-memory usage: 1002.0+ KB
+
 >>> em=em.replace({'low':1, 'medium':2,'high':3})
->>> em.head()
-   avg_monthly_hrs  filed_complaint  ...  status  tenure
-0              221              NaN  ...       0     5.0
-1              232              NaN  ...       1     2.0
-2              184              NaN  ...       1     3.0
-3              206              NaN  ...       1     2.0
-4              249              NaN  ...       1     3.0
 
-[5 rows x 9 columns]
 >>> em.head()
    avg_monthly_hrs  filed_complaint  ...  status  tenure
 0              221              NaN  ...       0     5.0
@@ -604,77 +445,10 @@ memory usage: 1002.0 KB
 4              249              0.0  ...       1     3.0
 
 [5 rows x 9 columns]
->>> empl.info()
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 14249 entries, 0 to 14248
-Data columns (total 9 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   avg_monthly_hrs    14249 non-null  int64  
- 1   filed_complaint    14249 non-null  float64
- 2   last_evaluation    12717 non-null  float64
- 3   n_projects         14249 non-null  int64  
- 4   recently_promoted  300 non-null    float64
- 5   salary             14249 non-null  int64  
- 6   satisfaction       14068 non-null  float64
- 7   status             14249 non-null  int64  
- 8   tenure             14068 non-null  float64
-dtypes: float64(5), int64(4)
-memory usage: 1002.0 KB
+
 >>> empl=em.replace({'recently_promoted': np.nan}, {'recently_promoted': 0})
->>> empl.info()
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 14249 entries, 0 to 14248
-Data columns (total 9 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   avg_monthly_hrs    14249 non-null  int64  
- 1   filed_complaint    2058 non-null   float64
- 2   last_evaluation    12717 non-null  float64
- 3   n_projects         14249 non-null  int64  
- 4   recently_promoted  14249 non-null  float64
- 5   salary             14249 non-null  int64  
- 6   satisfaction       14068 non-null  float64
- 7   status             14249 non-null  int64  
- 8   tenure             14068 non-null  float64
-dtypes: float64(5), int64(4)
-memory usage: 1002.0 KB
 >>> empl=empl.replace({'recently_promoted': np.nan}, {'recently_promoted': 0})
->>> empl.info()
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 14249 entries, 0 to 14248
-Data columns (total 9 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   avg_monthly_hrs    14249 non-null  int64  
- 1   filed_complaint    2058 non-null   float64
- 2   last_evaluation    12717 non-null  float64
- 3   n_projects         14249 non-null  int64  
- 4   recently_promoted  14249 non-null  float64
- 5   salary             14249 non-null  int64  
- 6   satisfaction       14068 non-null  float64
- 7   status             14249 non-null  int64  
- 8   tenure             14068 non-null  float64
-dtypes: float64(5), int64(4)
-memory usage: 1002.0 KB
 >>> empl=empl.replace({'filed_complaint': np.nan}, {'filed_complaint': 0})
->>> empl.info()
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 14249 entries, 0 to 14248
-Data columns (total 9 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   avg_monthly_hrs    14249 non-null  int64  
- 1   filed_complaint    14249 non-null  float64
- 2   last_evaluation    12717 non-null  float64
- 3   n_projects         14249 non-null  int64  
- 4   recently_promoted  14249 non-null  float64
- 5   salary             14249 non-null  int64  
- 6   satisfaction       14068 non-null  float64
- 7   status             14249 non-null  int64  
- 8   tenure             14068 non-null  float64
-dtypes: float64(5), int64(4)
-memory usage: 1002.0 KB
 >>> emp2=empl.dropna()
 >>> emp2.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -693,6 +467,9 @@ Data columns (total 9 columns):
  8   tenure             12717 non-null  float64
 dtypes: float64(5), int64(4)
 memory usage: 993.5 KB
+	    
+	    
+	    
 >>> X, Y = load_iris(return_X_y = True)
 >>> X = emp2.drop(columns= ['status'])
 >>> Y = emp2['status']
@@ -715,30 +492,7 @@ DecisionTreeClassifier()
 >>> plt.show()
 >>> train_X.shape
 (10173, 8)
->>> score = pd.DataFrame({"Model":['DTmodel'],
-                    "Accuracy Score": [accuracy_score(test_Y, pred_X)],
-                   "Recall": [recall_score(test_Y, pred_X)],
-                   "F1score": [f1_score(test_Y, pred_X]})
-		     
-SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
->>> Score = pd.DataFrame({'Model':[],
-                     'Accuracy Score':[],
-                     'Recall':[],
-                     'F1score':[]})
->>> score = pd.DataFrame({"Model":['DTmodel'],
-                    "Accuracy Score": [accuracy_score(test_Y, pred_X)],
-                   "Recall": [recall_score(test_Y, pred_X)],
-                   "F1score": [f1_score(test_Y, pred_X]})
-		     
-SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
->>> score = pd.DataFrame({"Model":['DTmodel'],
-                    "Accuracy Score": [accuracy_score(test_Y, pred_X)],
-                   "Recall": [recall_score(test_Y, pred_X)],
-                   "F1score": [f1_score(test_Y, pred_X)]})
-Traceback (most recent call last):
-  File "<pyshell#123>", line 3, in <module>
-    "Recall": [recall_score(test_Y, pred_X)],
-NameError: name 'recall_score' is not defined
+
 >>> from sklearn.metrics import accuracy_score,recall_score, f1_score
 
 >>> y_pred = DTmodel.predict(test_X)
@@ -751,11 +505,7 @@ NameError: name 'recall_score' is not defined
 0  DTmodel         0.96423  0.96987  0.976209
 >>> DTmodel.score(train_X,train_Y)
 1.0
->>> precision_score(train_Y,y_pred)
-Traceback (most recent call last):
-  File "<pyshell#129>", line 1, in <module>
-    precision_score(train_Y,y_pred)
-NameError: name 'precision_score' is not defined
+
 >>> recall_score=(train_Y,y_pred)
 >>> recall_score
 (8770     1
@@ -770,19 +520,8 @@ NameError: name 'precision_score' is not defined
 965      1
 8183     0
 Name: status, Length: 10173, dtype: int64, array([1, 0, 1, ..., 1, 1, 1], dtype=int64))
->>> confusion_matrix(y_true,y_pred)
-Traceback (most recent call last):
-  File "<pyshell#132>", line 1, in <module>
-    confusion_matrix(y_true,y_pred)
-NameError: name 'confusion_matrix' is not defined
->>> fig = plt.figure(figsize=(25,20))
->>> _ = tree.plot_tree(DTmodel, 
-                   feature_names=['salary','tenure','n_projects','avg_monthly_hrs','satisfaction','last_evaluation','filed_complaint','recently_promoted'],  
-                 filled=True)
->>> _ = tree.plot_tree(DTmodel, 
-                   feature_names=['salary','tenure','n_projects','avg_monthly_hrs','satisfaction','last_evaluation','filed_complaint','recently_promoted'],  
-                  class_names=['employed', 'left'],
-                 filled=True)
+
+
 >>> from sklearn.datasets import load_iris
 >>> from sklearn.linear_model import LogisticRegression
 >>> X, Y = load_iris(return_X_y = True)
